@@ -1,0 +1,57 @@
+### CASES ENDPOINTS
+POST http://localhost:3000/api/cases HTTP/1.1
+Content-Type: application/json
+
+{
+    "acosador": "Juan Prueba",
+    "telAcosador": "601758865",
+    "desc": "Me acosa por la calle, en redes sociales y por teléfono"
+}
+
+###
+GET http://localhost:3000/api/cases HTTP/1.1
+
+###
+GET http://localhost:3000/api/cases/65383b2f7f9e01c0a676d1cb HTTP/1.1
+
+###
+PUT http://localhost:3000/cases/api/65383b2f7f9e01c0a676d1cb HTTP/1.1
+Content-Type: application/json
+
+{
+    "acosador": "Juan Adorador",
+    "telAcosador": "1234567825",
+    "desc": "Me acosa por la calle, en redes sociales y por teléfono"
+}
+
+###
+DELETE http://localhost:3000/cases/65383aaaf7f8578f55a25682 HTTP/1.1
+
+
+
+
+
+
+
+### USERS ENDPOINTS
+
+POST http://localhost:3000/api/auth/singup HTTP/1.1
+Content-Type: application/json
+
+{
+    "nombre": "Juan De Arco",
+    "edad": 23,
+    "correo": "juan@mail.com",
+    "genero":"Femenino",
+    "dni":"451236547",
+    "password":"abc123"
+}
+
+###
+POST http://localhost:3000/api/auth/singin HTTP/1.1
+Content-Type: application/json
+
+{
+    "correo": "juan@mail.com",
+    "password": "abc123"
+}
