@@ -4,10 +4,9 @@
   "description": "Backend server for Cybersherlock App",
   "main": "index.js",
   "scripts": {
-    "build": "babel src --out-dir build", 
+    "build": "babel src --out-dir build",
     "dev": "nodemon src/index.js --exec babel-node",
     "start": "node build/index.js"
-
   },
   "keywords": [],
   "author": "Dev Yonier Zapata Asprilla",
@@ -27,6 +26,7 @@
     "@babel/core": "^7.23.2",
     "@babel/node": "^7.22.19",
     "@babel/preset-env": "^7.23.2",
+    "@flydotio/dockerfile": "^0.4.10",
     "nodemon": "^3.0.1"
   }
 }
