@@ -58,7 +58,7 @@ Now you can use the API
 ## API Reference
 
 # Contributors / DEVS
-Yonier Zapata Asprilla → [@samirZapata](https://github.com/samirZapata)
-Beatriz Grajales Gamboa
-Cristian Camilo Forero
-Karen Milena Espitia
+- Yonier Zapata Asprilla → [@samirZapata](https://github.com/samirZapata)
+- Beatriz Grajales Gamboa
+- Cristian Camilo Forero
+- Karen Milena Espitia

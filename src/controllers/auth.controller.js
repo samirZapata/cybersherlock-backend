@@ -3,6 +3,8 @@ import jwt from "jsonwebtoken";
 import config from "../config";
 import Role from "../models/Role";
 
+
+//REGISTRARSE
 export const singUp = async (req, res) => {
   const { nombre, edad, correo, genero, dni, password, roles } = req.body;
 
@@ -34,6 +36,7 @@ export const singUp = async (req, res) => {
   res.json({ token });
 };
 
+//LOGEARSE
 export const singIn = async (req, res) => {
   //OBTENEMOS LOS DATOS DEL USUARIO
 
@@ -60,3 +63,26 @@ export const singIn = async (req, res) => {
 
       res.json(token)
 };
+
+//OBTENER USUARIO POR DNI
+export const getUserByDni = async (req, res) => {
+    const user = await User.findOne({ dni: req.params.dni }).populate("roles");
+    console.log(user);
+    res.status(200).json(user);
+}
+
+//ACTUALIZAR USUARIO POR DNI
+
+export const updateUserByDni = async (req, res) => {
+    const updateUser = await User.findByIdAndUpdate(rq.param._id, req.body, {
+        new: true
+    })
+    res.status(200).json(updateUser)
+}
+
+//ELIMINAR USUARIO POR DNI
+export const deleteUserByDni = async (req, res) => {
+    const {dni} = req.params.dni;
+    await User.findOneAndDelete(dni)
+    res.status(200).json('Eliminado')
+}

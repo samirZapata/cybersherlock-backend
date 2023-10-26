@@ -17,17 +17,18 @@ GET http://localhost:3000/api/cases HTTP/1.1
 GET http://localhost:3000/api/cases/65383b2f7f9e01c0a676d1cb HTTP/1.1
 
 ###
-PUT http://localhost:3000/cases/api/65383b2f7f9e01c0a676d1cb HTTP/1.1
+PUT http://localhost:3000/api/cases/6539c045bdeb849577119563 HTTP/1.1
 Content-Type: application/json
 
 {
+    "nombreCaso": "Caso 002",
     "acosador": "Juan Adorador",
     "telAcosador": "1234567825",
     "desc": "Me acosa por la calle, en redes sociales y por teléfono"
 }
 
 ###
-DELETE http://localhost:3000/cases/65383aaaf7f8578f55a25682 HTTP/1.1
+DELETE http://localhost:3000/api/cases/65383aaaf7f8578f55a25682 HTTP/1.1
 
 
 
@@ -37,11 +38,11 @@ POST http://localhost:3000/api/auth/singup HTTP/1.1
 Content-Type: application/json
 
 {
-    "nombre": "Malia Prueba",
+    "nombre": "usuario",
     "edad": 23,
-    "correo": "malia@mail.com",
-    "genero":"Masculino",
-    "dni":"1254786895",
+    "correo": "usuario@mail.com",
+    "genero":"Femenino",
+    "dni":"8543621574",
     "password":"abc123"
 }
 
@@ -50,9 +51,21 @@ POST http://localhost:3000/api/auth/singin HTTP/1.1
 Content-Type: application/json
 
 {
-    "correo": "arturo@mail.com",
+    "correo": "admin@mail.com",
     "password": "abc123"
 }
 
 ### USERS ENDPOINTS 
-POST http://localhost:3000/api/users HTTP/1.1
+GET http://localhost:3000/api/auth/8543621574 HTTP/1.1
+###
+PUT http://localhost:3000/api/auth/8543621574 HTTP/1.1
+Content-Type: application/json
+
+{
+    "nombre": "Denise joven",
+    "edad": 23,
+    "correo": "denise@mail.com"
+}
+
+###
+DELETE http://localhost:3000/api/auth/123467895 HTTP/1.1

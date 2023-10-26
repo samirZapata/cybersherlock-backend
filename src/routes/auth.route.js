@@ -6,6 +6,9 @@ import {checkDuplicateUsers} from '../middlewares/authSingUp';
 
 router.post('/singup', checkDuplicateUsers ,authCtrl.singUp)
 router.post('/singin', authCtrl.singIn)
+router.get('/:dni', authCtrl.getUserByDni)
+router.put('/:dni', authCtrl.updateUserByDni)
+router.delete('/:dni', authCtrl.deleteUserByDni)
 
 
 

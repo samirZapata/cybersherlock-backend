@@ -34,7 +34,6 @@ export const updateCase = async (req, res) => {
 }
 
 export const deleteCase = async (req, res) => {
-    const {caseId} = req.params;
-    await Case.findByIdAndDelete(caseId)
-    res.status(200).json()
+    await Case.findByIdAndDelete(req.params.caseId)
+    res.status(200).json('Eliminado')
 }
