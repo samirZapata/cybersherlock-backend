@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for cbsbackend on 2023-10-25T21:24:56-05:00
+# fly.toml app configuration file generated for cbs-backend on 2023-10-26T09:44:04-05:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "cbsbackend"
+app = "cbs-backend"
 primary_region = "bog"
 
 [build]
