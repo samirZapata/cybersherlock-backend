@@ -1,4 +1,4 @@
-import Case from '../models/cases'
+import Case from '../models/Cases'
 
 export const createCase = async (req, res) => {
     
