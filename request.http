@@ -1,9 +1,11 @@
 ### CASES ENDPOINTS
 POST http://localhost:3000/api/cases HTTP/1.1
 Content-Type: application/json
+#x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU2ODc0Nzg0NTEiLCJpYXQiOjE2OTgyNTIwMzEsImV4cCI6MTY5ODMzODQzMX0.kBgII6y9lrUEw09aIQ4kVpA_Tbfgd69jZ23zcUwN7X8
 
 {
-    "acosador": "Juan Prueba",
+    "nombreCaso": "Caso 002",
+    "acosador": "Ana Acosadora",
     "telAcosador": "601758865",
     "desc": "Me acosa por la calle, en redes sociales y por teléfono"
 }
@@ -29,21 +31,17 @@ DELETE http://localhost:3000/cases/65383aaaf7f8578f55a25682 HTTP/1.1
 
 
 
-
-
-
-
-### USERS ENDPOINTS
+### USERS AUTH ENDPOINTS
 
 POST http://localhost:3000/api/auth/singup HTTP/1.1
 Content-Type: application/json
 
 {
-    "nombre": "Juan De Arco",
+    "nombre": "Malia Prueba",
     "edad": 23,
-    "correo": "juan@mail.com",
-    "genero":"Femenino",
-    "dni":"451236547",
+    "correo": "malia@mail.com",
+    "genero":"Masculino",
+    "dni":"1254786895",
     "password":"abc123"
 }
 
@@ -52,6 +50,9 @@ POST http://localhost:3000/api/auth/singin HTTP/1.1
 Content-Type: application/json
 
 {
-    "correo": "juan@mail.com",
+    "correo": "arturo@mail.com",
     "password": "abc123"
 }
+
+### USERS ENDPOINTS 
+POST http://localhost:3000/api/users HTTP/1.1

@@ -2,9 +2,10 @@ import Case from '../models/cases'
 
 export const createCase = async (req, res) => {
     
-    const { acosador, telAcosador, desc} = req.body
+    const { nombreCaso, acosador, telAcosador, desc} = req.body
 
     const newCase = new Case({
+        nombreCaso,
         acosador,
         telAcosador,
         desc

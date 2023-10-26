@@ -7,9 +7,12 @@ import {createRoles} from './libs/initialSetup';
 import casesRoutes from './routes/case.route';
 import authRoutes from './routes/auth.route';
 
+
 const app = express();
+const port = process.env.PORT || 3000;
 createRoles(); //ESTABLECE LOS ROLES PREDEFINIDOS
 
+app.set('port', port);
 
 app.use(morgan('dev'));
 app.set('pkg', pkg);

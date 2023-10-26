@@ -1,5 +1,7 @@
 import app from './app';
 import './database';
-app.listen(3000);
 
-console.log('Server listen on port 3000');
+const port = app.get('port');
+app.listen(port);
+
+console.log("Server listen on port", port);

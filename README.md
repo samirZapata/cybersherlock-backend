@@ -1,4 +1,4 @@
-#CYBERSHERLOCK APP BACKEND
+# CYBERSHERLOCK APP BACKEND
 This is [Cybersherlock's](https://github.com/samirZapata/Cybersherlock.git) backend application that connects to a MongoDB database built with NodeJS and Express framework.
 
 ## Dependencies
@@ -56,3 +56,9 @@ npm test
 Now you can use the API
 
 ## API Reference
+
+# Contributors / DEVS
+Yonier Zapata Asprilla → [@samirZapata](https://github.com/samirZapata)
+Beatriz Grajales Gamboa
+Cristian Camilo Forero
+Karen Milena Espitia
