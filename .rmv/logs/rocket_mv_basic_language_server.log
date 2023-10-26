@@ -2081,3 +2081,11 @@ Account{name=..., path=..., type=PREDICT}
 2023-10-25 22:32:50.405 [pool-3-thread-1] INFO  com.rs.mv.mvvs.client.catalog.from.scan.CurrentPathScanner - [client:400205]scan file in current open file directory(F:/cbs_back/src)
 2023-10-25 22:33:04.646 [pool-3-thread-1] INFO  com.rs.mv.mvvs.client.catalog.from.scan.CurrentPathScanner - [client:400205]scan file in current open file directory(F:/cbs_back/src/routes)
 2023-10-25 22:33:10.158 [pool-3-thread-1] INFO  com.rs.mv.mvvs.client.catalog.from.scan.CurrentPathScanner - [client:400205]scan file in current open file directory(F:/cbs_back/src/controllers)
+2023-10-25 22:41:59.152 [pool-3-thread-1] INFO  com.rs.mv.mvvs.client.catalog.from.scan.CurrentPathScanner - [client:400205]scan file in current open file directory(F:/cbs_back/build)
+2023-10-25 22:43:12.462 [pool-3-thread-1] INFO  com.rs.mv.mvvs.client.catalog.from.scan.CurrentPathScanner - [client:400205]scan file in current open file directory(F:/cbs_back)
+2023-10-25 22:43:26.092 [pool-3-thread-1] INFO  com.rs.mv.mvvs.client.catalog.from.scan.CurrentPathScanner - [client:400205]scan file in current open file directory(F:/cbs_back)
+2023-10-25 22:43:49.387 [pool-3-thread-1] INFO  com.rs.mv.mvvs.client.catalog.from.scan.CurrentPathScanner - [client:400205]scan file in current open file directory(F:/cbs_back)
+2023-10-25 22:45:44.341 [pool-3-thread-1] INFO  com.rs.mv.mvvs.client.catalog.from.scan.CurrentPathScanner - [client:400205]scan file in current open file directory(F:/cbs_back)
+2023-10-25 22:46:48.495 [pool-3-thread-1] INFO  com.rs.mv.mvvs.client.catalog.from.scan.CurrentPathScanner - [client:400205]scan file in current open file directory(F:/cbs_back)
+2023-10-25 22:47:25.760 [pool-3-thread-1] INFO  com.rs.mv.mvvs.client.catalog.from.scan.CurrentPathScanner - [client:400205]scan file in current open file directory(F:/cbs_back/src/controllers)
+2023-10-25 22:48:34.309 [main] WARN  com.rs.mv.mvvs.Startup - [LSP:100104]ROCKET MV BASIC EXTENSION exited
