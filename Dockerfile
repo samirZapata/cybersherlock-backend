@@ -15,7 +15,7 @@ RUN apt-get update -qq && \
     apt-get install -y build-essential pkg-config python-is-python3
 
 #Copiar archivos de configuracion de Node.js
-COPY package.json package-lock.json ./
+COPY package.json package-lock.json ../
 RUN npm ci --include=dev
 
 #Copiar el codigo de la aplicacion
@@ -34,4 +34,4 @@ COPY --from=build . .
 EXPOSE 9000
 
 #Comando de inicio
-CMD ["npm", "run", "dev", "--host", "0.0.0.0"]
+CMD ["npm", "run", "sart", "--host", "0.0.0.0"]
