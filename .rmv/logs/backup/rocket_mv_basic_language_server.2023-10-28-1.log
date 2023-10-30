@@ -1,0 +1,3 @@
+2023-10-28 00:06:25.766 [pool-3-thread-1] INFO  com.rs.mv.mvvs.client.catalog.from.scan.CurrentPathScanner - [client:400205]scan file in current open file directory(F:/cbs_back/src/models)
+2023-10-28 00:06:29.906 [pool-3-thread-1] INFO  com.rs.mv.mvvs.client.catalog.from.scan.CurrentPathScanner - [client:400205]scan file in current open file directory(F:/cbs_back/src)
+2023-10-28 00:08:01.645 [pool-3-thread-1] INFO  com.rs.mv.mvvs.client.catalog.from.scan.CurrentPathScanner - [client:400205]scan file in current open file directory(F:/cbs_back)

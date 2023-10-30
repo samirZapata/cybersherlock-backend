@@ -2,6 +2,9 @@ import app from './app';
 import './database';
 
 const port = app.get('port');
-app.listen(port);
+const host = app.get('host');
 
-console.log("Server listen on port", port);
+app.listen.port = port;
+app.listen.host = host;
+
+console.log('Server listen on: ',host,':', port);

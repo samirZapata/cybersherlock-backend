@@ -1,1 +1,6 @@
 request.http
+node_modules
+.env
+Dockerfile
+.dockerignore
+fly.toml

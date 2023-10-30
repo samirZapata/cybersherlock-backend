@@ -6,9 +6,3 @@ export const con =  mongoose.connect("mongodb+srv://admin:BsGmmhgC_kK59wE@atlasc
 })
 .then(db => console.log("DB is connected"))
 .catch(err => console.log(err));
-
-if(con){
-    console.log("DB is connected");
-}else{
-    console.log("DB is not connected");
-}

@@ -9,10 +9,12 @@ import authRoutes from './routes/auth.route';
 
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 9000;
+const host = process.env.HOST || '0.0.0.0'
 createRoles(); //ESTABLECE LOS ROLES PREDEFINIDOS
 
-app.set('port', port);
+app.set('port',port);
+app.set('host',host);
 
 app.use(morgan('dev'));
 app.set('pkg', pkg);
