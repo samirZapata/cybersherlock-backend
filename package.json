@@ -6,7 +6,7 @@
   "scripts": {
     "build": "babel src --out-dir build",
     "dev": "nodemon src/index.js --exec babel-node",
-    "start": "node src/index.js"
+    "start": "nodemon src/index.js --exec babel-node"
   },
   "keywords": [],
   "author": "Dev Yonier Zapata Asprilla",
