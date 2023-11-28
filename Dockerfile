@@ -34,4 +34,4 @@ COPY --from=build . .
 EXPOSE 9000
 
 #Comando de inicio
-CMD ["npm", "run", "dev", "--host", "0.0.0.0"]
+CMD ["npm", "start"]
