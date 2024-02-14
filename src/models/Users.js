@@ -24,6 +24,16 @@ const userSchema = new Schema(
       required: true,
     },
 
+    tempCode: {
+      type: String,
+      required: false
+    },
+
+    tempCodeExpires: {
+      type: Date,
+      required: false
+    },
+
     roles: [
       {
         ref: "Role",
@@ -39,20 +49,29 @@ const userSchema = new Schema(
 
 //METODOS PARA CIFRAR Y COMPARAR CONTRASEÑAS
 userSchema.statics.encryptPassword = async (password) => {
-  try{
-
+  try {
     const salt = await bcrypt.genSalt(10); //10 es el numero de veces que se va a cifrar
     const hashedPassword = await bcrypt.hash(password, salt); //cifra la contraseña
-    console.log('Contraseña cifrada: ', hashedPassword)
+    console.log("Contraseña cifrada: ", hashedPassword);
     return hashedPassword;
-  }catch(e){
+  } catch (e) {
     console.log(e);
   }
 };
 
 userSchema.statics.comparePassword = async (password, recivedPassword) => {
   return await bcrypt.compare(password, recivedPassword); //compara la contraseña cifrada con la que se recibe
-}
+};
 
+/*
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) {
+    return next();
+  }
+  const hash = await bcrypt.hash(this.password, Number(bcryptSalt));
+  this.password = hash;
+  //next();
+});
+*/
 
 export default model("User", userSchema);

@@ -1,6 +1,11 @@
 //ARCHIVO PARA VERIFICAR SI YA EXISTE EL USUARIO
 import {ROLES} from '../models/Role';
 import User from '../models/users';
+import { Jwt } from 'jsonwebtoken';
+import token from '../models/Token.model';
+import sendEmail from '../libs/sendEmail';
+import crypto from 'crypto';
+import bcrypt from 'bcryptjs';
 
 
 export const checkDuplicateUsers = async (req, res, next) => {
@@ -22,3 +27,4 @@ export const checkRolesExisted = (req, res, next) => {
     }
     next()
 }
+

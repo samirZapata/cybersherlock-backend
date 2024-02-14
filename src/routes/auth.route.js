@@ -10,6 +10,10 @@ router.get('/:dni', authCtrl.getUserByDni)
 router.put('/:dni', authCtrl.updateUserByDni)
 router.delete('/:dni', authCtrl.deleteUserByDni)
 
+router.post('/resetPassword/:correo', authCtrl.resetPassword)
+router.post('/verificarCodigo/:tempCode', authCtrl.verificarCodigo)
+router.post('/updatePass', authCtrl.updatePass)
+
 
 
 export default router;

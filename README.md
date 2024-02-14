@@ -18,6 +18,9 @@ This is [Cybersherlock's](https://github.com/samirZapata/Cybersherlock.git) back
     - [babel/node](https://www.npmjs.com/package/@babel/node)
     - [babel-preset-env](https://www.npmjs.com/package/@babel/preset-env)
 - [Busboyjs](https://www.npmjs.com/package/busboy)
+- [Express-async-errors](https://www.npmjs.com/package/express-async-errors)
+- [Handlebars](https://www.npmjs.com/package/handlebars)
+- [Nodemailer](https://www.npmjs.com/package/nodemailer)
 
 ## LOCAL AND PRODUCTION VARIABLES
 - npm run build: To convert code
