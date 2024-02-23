@@ -10,5 +10,6 @@ router.get("/", caseController.getCase);
 router.get("/:caseId", caseController.getCaseById);
 router.put("/:caseId", caseController.updateCase);
 router.delete("/:caseId", caseController.deleteCase);
+router.post("/:upload", caseController.uploadFile);
 
 export default router;

@@ -37,3 +37,8 @@ export const deleteCase = async (req, res) => {
     await Case.findByIdAndDelete(req.params.caseId)
     res.status(200).json('Eliminado')
 }
+
+export const uploadFile = async (req, res) => {
+    
+}
+
