@@ -1,26 +1,17 @@
-import {Schema, model} from "mongoose";
+import { Schema, model } from "mongoose";
 
 const caseSchema = new Schema(
-{
+  {
     nombreCaso: String,
     acosador: String,
     telAcosador: String,
     desc: String,
-
-
-    Evidencias: [
-        {
-            ref: "Evidencias",
-            type: Schema.Types.ObjectId,
-        }
-    ]
-},
-
-
-{
+    Evidencias: [{ type: Schema.Types.ObjectId, ref: "Evidencia" }],
+  },
+  {
     timestamps: true,
-    versionKey: false
-});
-
+    versionKey: false,
+  }
+);
 
 export default model("Case", caseSchema);

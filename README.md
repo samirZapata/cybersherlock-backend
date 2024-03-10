@@ -17,7 +17,7 @@ This is [Cybersherlock's](https://github.com/samirZapata/Cybersherlock.git) back
     - [babel/cli](https://www.npmjs.com/package/@babel/cli)
     - [babel/node](https://www.npmjs.com/package/@babel/node)
     - [babel-preset-env](https://www.npmjs.com/package/@babel/preset-env)
-- [Busboyjs](https://www.npmjs.com/package/busboy)
+- [Multer](https://www.npmjs.com/package/multer)
 - [Express-async-errors](https://www.npmjs.com/package/express-async-errors)
 - [Handlebars](https://www.npmjs.com/package/handlebars)
 - [Nodemailer](https://www.npmjs.com/package/nodemailer)

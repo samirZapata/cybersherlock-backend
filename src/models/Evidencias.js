@@ -1,11 +1,24 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const YourModelSchema = new mongoose.Schema({
-  filename: {
-    type: String,
-    required: true,
-    unique: true,
+const evidenciaSchema = new mongoose.Schema(
+  {
+    filename: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    path: {
+      type: String,
+      required: true,
+    },
+    size: {
+      type: Number,
+      required: true,
+    },
   },
-}, {timestamps: true});
+  {
+    timestamps: true,
+  }
+);
 
-module.exports = mongoose.model('YourModel', YourModelSchema);
+module.exports = mongoose.model("Evidencia", evidenciaSchema);
