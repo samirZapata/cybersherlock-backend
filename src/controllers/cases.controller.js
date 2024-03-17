@@ -3,6 +3,7 @@ import Case from '../models/Cases'
 import fs from 'fs'
 import path from 'path'
 
+
 //DEFINIR STORAGE ENGINE PARA MULTER
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
@@ -16,12 +17,16 @@ export const createCase = async (req, res) => {
     }
 
     const { nombreCaso, acosador, telAcosador, desc } = req.body;
+    const { _id: userId } = req.user; // Obtenemos el ID de usuario autenticado
+
     const newCase = new Case({
       nombreCaso,
       acosador,
       telAcosador,
       desc,
       Evidencias: [],
+      userId, // Agregamos el ID de usuario al caso
+      createdBy: req.user.correo, // Agregamos el correo electrónico del usuario al caso
     });
 
     // Guardar registro en la base de datos
@@ -58,6 +63,27 @@ export const getCaseById = async (req, res) => {
     res.status(200).json(casos)
 }
 
+/**
+ * 
+ * Utilizo req.query.email para obtener el correo electrónico de la URL. Luego, busco el caso con el correo electrónico y utilizo 
+ * populate para recuperar los detalles del usuario relacionado. Devuelves el caso encontrado en la respuesta.
+ */
+// Get cases by email
+export const getCasesByEmail = async (req, res) => {
+  try {
+    const email = req.query.email;
+    const casos = await Case.find({ "user.email": email });
+    if (casos.length === 0) {
+      return res.status(404).json({ message: "No cases found for this email." });
+    }
+    res.status(200).json(casos);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error." });
+  }
+};
+
+
 export const updateCase = async (req, res) => {
     const updatedCase = await Case.findByIdAndUpdate(req.params.caseId, req.body, {
         new: true
@@ -70,7 +96,44 @@ export const deleteCase = async (req, res) => {
     res.status(200).json('Eliminado')
 }
 
-export const uploadFile = async (req, res) => {
-    
-}
 
+
+/*
+Esta función procesa cada archivo subido en req.files.evidencias y los guarda en la carpeta uploads con un nombre único. 
+Ahora, cuando se use la ruta POST /api/cases/:caseId/upload en Android, Multer gestionará los archivos y 
+llamará a la función uploadFile en cases.controller.js para procesarlos y guardarlos en el servidor.
+*/
+
+exports.uploadFile = async (req, res, next) => {
+  try {
+    const uploadFolder = 'uploads/';
+
+    // Create upload folder if it doesn't exist
+    await fs.ensureDir(uploadFolder);
+
+    // Process each file and save to the server
+    req.files.evidencias.forEach(file => {
+      // Generate unique filename with timestamp and original extention
+      const now = Date.now();
+      const uniqueName = `${now}_${file.originalname}`;
+
+      // Construct destination path
+      const targetPath = path.resolve(__dirname, `../../${uploadFolder}${uniqueName}`);
+
+      // Save file to disk
+      fs.move(file.path, targetPath, err => {
+        if (err) {
+          console.error(`Error moving file ${file.originalname}:`, err);
+          return res.status(500).send('An error occurred while saving the files.');
+        }
+        console.log(`Successfully moved file ${file.originalname} to ${targetPath}`);
+      });
+    });
+
+    // Call the next middleware or route handler
+    next();
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send('An unexpected error occured during file processing.');
+  }
+};
