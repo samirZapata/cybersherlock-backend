@@ -19,5 +19,9 @@
         "**/.factorypath": true,
         "**/.rmv/catalog/**": true,
         "*/_*": true
+    },
+    "git.ignoreLimitWarning": true,
+    "files.watcherExclude": {
+        "**/target": true
     }
 }
