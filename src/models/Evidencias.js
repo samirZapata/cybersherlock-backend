@@ -5,6 +5,7 @@ const evidenciaSchema = new mongoose.Schema({
   path: { type: String, required: false },
   size: { type: Number, required: false },
   case: { type: mongoose.Schema.Types.ObjectId, ref: 'Case', required: true },
-}, { timestamps: true });
+  claveDeCifrado: { type: String, required: false },
+}, { timestamps: true, versionKey: false});
 
 module.exports = mongoose.model('Evidencia', evidenciaSchema);

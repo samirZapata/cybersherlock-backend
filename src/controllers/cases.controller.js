@@ -9,6 +9,33 @@ import {
 import crypto from "crypto";
 import * as MagicNumber from "magic-number";
 
+
+
+/*
+Funciones de cifrado y descifrado:
+Las funciones cifrarArchivo y descifrarArchivo utilizan el algoritmo de cifrado simétrico AES-256 en modo CBC 
+(Cipher Block Chaining) para cifrar y descifrar los archivos. Estas funciones toman como entrada el archivo 
+(representado como un búfer de datos) y una clave de cifrado, y devuelven el archivo cifrado o descifrado, respectivamente.
+
+Creación de la clave de cifrado:
+Antes de cifrar un archivo, se genera una clave de cifrado aleatoria utilizando crypto.randomBytes(32), 
+que produce una cadena de 32 bytes (256 bits), que se utiliza como clave de cifrado AES-256.
+
+Cifrado del archivo:
+Después de generar la clave de cifrado, el archivo se cifra utilizando la función cifrarArchivo, 
+que utiliza la clave generada y el algoritmo AES-256-CBC para cifrar el archivo. El archivo cifrado 
+se guarda en disco utilizando fs.writeFileSync.
+
+Verificación del cifrado:
+Después de cifrar el archivo, el código intenta detectar si el archivo está cifrado utilizando la biblioteca MagicNumber. 
+Si el formato del archivo es reconocido como cifrado (por ejemplo, si es un archivo ZIP cifrado), 
+se imprime un mensaje indicando que el archivo está cifrado.
+
+Almacenamiento de la clave de cifrado:
+La clave de cifrado utilizada para cifrar el archivo se almacena en el modelo Case como claveDeCifrado.
+*/
+
+
 // DEFINIR STORAGE ENGINE PARA MULTER
 const storage = multer.memoryStorage();
 const upload = multer({
@@ -59,6 +86,9 @@ export const createCase = async (req, res) => {
       createdBy
     } = req.body;
 
+
+    let claveDeCifrado;
+
     // Crear un nuevo caso
     const newCase = new Case({
       nombreCaso,
@@ -85,7 +115,7 @@ export const createCase = async (req, res) => {
           });
         }
 
-        const claveDeCifrado = crypto.randomBytes(32); // 32 bytes = 256 bits para AES-256
+        claveDeCifrado = crypto.randomBytes(32); // 32 bytes = 256 bits para AES-256
         console.log(
           `Clave de cifrado para ${file.originalname
           }: ${claveDeCifrado.toString("hex")}`
@@ -149,6 +179,7 @@ export const createCase = async (req, res) => {
           path: filePath,
           size: archivoCifrado.length, // Tamaño del archivo cifrado
           case: caseSaved._id,
+          claveDeCifrado: claveDeCifrado.toString("hex"),
         });
 
         // Guardar la evidencia en la base de datos
@@ -182,7 +213,6 @@ export const getCaseByNombreCaso = async (req, res) => {
   try {
     // Buscar el caso por nombre
     const caso = await Case.findOne({ nombreCaso: req.params.nombreCaso });
-    console.log("Nombre del caso:", req.params.nombreCaso);
 
     if (!caso) {
       return res.status(404).json({ message: "Caso no encontrado" });
@@ -207,6 +237,35 @@ export const getCaseByNombreCaso = async (req, res) => {
     res.status(500).json({ message: "Error al buscar el caso" });
   }
 };
+
+
+export const getFileByNombreArchivo = async (req, res) => {
+  const casoId = req.params.casoId;
+  const nombreArchivo = req.params.nombreArchivo;
+  
+  // Construir la ruta de archivos cifrados
+  const rutaArchivosCifrados = path.join(__dirname, '../../uploads', casoId, nombreArchivo);
+
+  try {
+    // Verificar si el archivo existe
+    const stats = fs.statSync(rutaArchivosCifrados);
+    
+    // Si es un archivo, descargarlo
+    if (stats.isFile()) {
+      return res.download(rutaArchivosCifrados, nombreArchivo);
+    } else {
+      return res.status(404).send(`El archivo '${nombreArchivo}' no se encontró en el caso con ID '${casoId}'.`);
+    }
+  } catch (error) {
+    // Manejar errores
+    console.error(error);
+    return res.status(500).send('Error al descargar el archivo.');
+  }
+}
+
+
+
+
 
 
 

@@ -13,6 +13,7 @@ router.post('/', caseController.createCase);
 router.get('/:nombreCaso', caseController.getCaseByNombreCaso);
 router.put('/:caseId', verifyToken, caseController.updateCase);
 router.delete('/:caseId', verifyToken, caseController.deleteCase);
+router.get('/uploads/:casoId/:nombreArchivo', caseController.getFileByNombreArchivo);
 
 
 //Multer para manejar el middleware de subida de archivos
