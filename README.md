@@ -22,6 +22,8 @@ This is [Cybersherlock's](https://github.com/samirZapata/Cybersherlock.git) back
 - [Express-async-errors](https://www.npmjs.com/package/express-async-errors)
 - [Handlebars](https://www.npmjs.com/package/handlebars)
 - [Nodemailer](https://www.npmjs.com/package/nodemailer)
+- [Magic-Number](https://www.npmjs.com/package/magic-number)
+- [Crypto](https://www.npmjs.com/package/crypto-js)
 
 ## LOCAL AND PRODUCTION VARIABLES
 - npm run build: To convert code
@@ -34,6 +36,7 @@ This is [Cybersherlock's](https://github.com/samirZapata/Cybersherlock.git) back
 - Middlewares: Express' code to config routes or endpoints
 - Models: Data models from MongoDB
 - Routes: Endpoints available from the server
+- Uploads: To storage all evidences
 
 ## GETTING STARTED
 - Clone the repository

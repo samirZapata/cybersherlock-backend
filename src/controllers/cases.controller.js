@@ -8,6 +8,7 @@ import {
 } from "domain";
 import crypto from "crypto";
 import * as MagicNumber from "magic-number";
+import Cases from "../models/Cases";
 
 
 
@@ -227,7 +228,7 @@ export const getCaseByNombreCaso = async (req, res) => {
 
     // Recolectar las claves de cifrado de cada archivo
     const clavesCifrado = evidencias.map(evidencia => {
-      return { filename: evidencia.filename, claveCifrado: evidencia.claveCifrado };
+      return { filename: evidencia.filename, claveCifrado: evidencia.claveDeCifrado };
     });
 
     // Devolver la información del caso, archivos adjuntos y claves de cifrado
@@ -265,10 +266,6 @@ export const getFileByNombreArchivo = async (req, res) => {
 
 
 
-
-
-
-
 export const getCase = async (req, res) => {
   const cases = await Case.find();
   res.json(cases);
@@ -279,33 +276,6 @@ export const getCaseById = async (req, res) => {
   res.status(200).json(casos);
 };
 
-/**
- *
- * Utilizo req.query.email para obtener el correo electrónico de la URL. Luego, busco el caso con el correo electrónico y utilizo
- * populate para recuperar los detalles del usuario relacionado. Devuelves el caso encontrado en la respuesta.
- */
-// Get cases by email
-export const getCasesByEmail = async (req, res) => {
-  try {
-    const email = req.query.email;
-    const casos = await Case.find({
-      "user.email": email
-    });
-    if (casos.length === 0) {
-      return res
-        .status(404)
-        .json({
-          message: "No cases found for this email."
-        });
-    }
-    res.status(200).json(casos);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({
-      message: "Internal Server Error."
-    });
-  }
-};
 
 export const updateCase = async (req, res) => {
   const updatedCase = await Case.findByIdAndUpdate(
@@ -368,5 +338,50 @@ exports.uploadFile = async (req, res, next) => {
     return res
       .status(500)
       .send("An unexpected error occured during file processing.");
+  }
+};
+
+
+/**
+ *
+ * Utilizo req.query.email para obtener el correo electrónico de la URL. Luego, busco el caso con el correo electrónico y utilizo
+ * populate para recuperar los detalles del usuario relacionado. Devuelves el caso encontrado en la respuesta.
+ */
+// Get cases by email
+export const getByMail = async (req, res) => {
+ 
+  try{
+    //const casos = await Case.find({ createdBy: req.params.createdBy });
+
+    const email = req.params.createdBy;
+    console.log("Email:", email);
+    
+    const casos = await Case.find({ createdBy: email }).populate("createdBy");
+    console.log("cases encontrados:", casos);
+
+    console.log(casos);
+    if (!casos) {
+      return res
+        .status(404)
+        .json({
+          message: "No cases found for this email."
+        });
+    }else{
+      res.status(200).json(casos);
+    }
+
+  } catch (error) {
+  
+    console.error(error);
+
+    if (error instanceof mongoose.Error.CastError) {
+      return res.status(500).json({
+        message: `Internal Server Error:\n\nCastError: Cast to ObjectId failed for value "${email}" at path "_id" for model "products"`
+      });
+    } else {
+      res.status(500).json({
+        message: `Internal Server Error.\n\n${error}`
+      });
+    }
   }
 };

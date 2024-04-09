@@ -4,16 +4,14 @@ import express from 'express';
 import * as caseController from '../controllers/cases.controller';
 import { verifyToken } from '../middlewares';
 import multer from 'multer';
-const { authenticateUser, getUserEmail } = require('../middlewares/auth');
 
 //CASE ROUTES
-
 router.post('/', caseController.createCase);
-//router.get('/:correo', caseController.getCasesByEmail);
 router.get('/:nombreCaso', caseController.getCaseByNombreCaso);
 router.put('/:caseId', verifyToken, caseController.updateCase);
 router.delete('/:caseId', verifyToken, caseController.deleteCase);
 router.get('/uploads/:casoId/:nombreArchivo', caseController.getFileByNombreArchivo);
+
 
 
 //Multer para manejar el middleware de subida de archivos
@@ -30,12 +28,4 @@ router.post('/upload', (req, res, next) => {
 }, caseController.uploadFile);
 
 
-/*
-router.post("/", caseController.createCase);
-router.get("/", caseController.getCase);
-router.get("/:caseId", caseController.getCaseById);
-router.put("/:caseId", caseController.updateCase);
-router.delete("/:caseId", caseController.deleteCase);
-router.post("/:upload", caseController.uploadFile);
-**/
 export default router;

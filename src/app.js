@@ -7,6 +7,7 @@ import {createRoles} from './libs/initialSetup';
 
 import casesRoutes from './routes/case.route';
 import authRoutes from './routes/auth.route';
+import casesAuxRoutes from './routes/caseAux.route';
 
 
 
@@ -34,6 +35,7 @@ app.get('/', (req, res)=>{
 
 app.use('/api/cases', casesRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/cases/aux', casesAuxRoutes);
 
 
 

@@ -66,11 +66,16 @@ export const singIn = async (req, res) => {
 };
 
 //OBTENER USUARIO POR DNI
-export const getUserByDni = async (req, res) => {
-  const user = await User.findOne({ dni: req.params.dni }).populate("roles");
-  console.log(user);
+export const getUserByEmail = async (req, res) => {
+
+  const email = req.params.correo;
+  const user = await User.findOne({ correo: email  })
   res.status(200).json(user);
+ 
 };
+
+
+
 
 //ACTUALIZAR USUARIO POR DNI
 
